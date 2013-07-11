@@ -33,3 +33,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Ignore data file
+migration_data.py
+migration_data.pyc
