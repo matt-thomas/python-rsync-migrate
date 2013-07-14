@@ -14,15 +14,14 @@ options, args = parser.parse_args()
 
 def run_file_migration(name):
    
-    if name == 'all':
-        for migration in FILE_MIGRATIONS:
+    for migration in FILE_MIGRATIONS:
+        if name == migration['host'] or name == 'all':
             excludes = ''
             for exclude in migration['exclude']:
                 excludes = '%s --exclude=%s' % (excludes, exclude)
             rsync_command = 'rsync -rlv %s %s@%s:%s %s' % (excludes, migration['user'], migration['host'], migration['remote_dir'], migration['local_dir'])
             os.system(rsync_command)
-
-
+                
 if __name__ == '__main__':
     run_file_migration(options.backup_server)
 
